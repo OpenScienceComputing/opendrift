@@ -83,7 +83,7 @@ class Reader(BaseReader, StructuredReader):
 
         gls_param = ['gls_cmu0', 'gls_p', 'gls_m', 'gls_n']
 
-        filestr = str(filename)
+        filestr = str(dataset)
         if name is None:
             self.name = filestr
         else:
@@ -158,7 +158,7 @@ class Reader(BaseReader, StructuredReader):
                 self.lon, self.lat = np.meshgrid(self.lon, self.lat)
                 self.angle_xi_east = 0
         else:
-            raise ValueError(filename + ' does not contain lon/lat '
+            raise ValueError(dataset + ' does not contain lon/lat '
                              'arrays, please supply a grid-file: "gridfile=<grid_file>"')
 
         for var in list(self.ROMS_variable_mapping):  # Remove unused variables
