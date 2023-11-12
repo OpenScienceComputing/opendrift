@@ -94,7 +94,7 @@ class Reader(BaseReader, StructuredReader):
             logger.info('Opening dataset: ' + dataset)
             # intake_catalog = 'https://mghp.osn.xsede.org/rsignellbucket1/jzambon/cnaps.yml'
             
-            cat = intake.open_catalog(intake_catalog, decode_times=False)
+            cat = intake.open_catalog(intake_catalog)
             # dataset = 'CNAPS_Forecast_Archive_64' 
             self.Dataset = cat[dataset].to_dask()
         
