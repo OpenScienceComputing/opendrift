@@ -92,10 +92,10 @@ class Reader(BaseReader, StructuredReader):
         try:
             # Open dataset from Intake catalog, check that everything is ok
             logger.info('Opening dataset: ' + dataset)
-            # intake_catalog = 'https://mghp.osn.xsede.org/rsignellbucket1/jzambon/cnaps.yml'
+            # intake_catalog = 'https://mghp.osn.xsede.org/rsignellbucket1/rsignell/cnaps.yml'
             
             cat = intake.open_catalog(intake_catalog)
-            # dataset = 'CNAPS_Forecast_Archive_64' 
+            # dataset = 'CNAPS_opendrift' 
             self.Dataset = cat[dataset].to_dask()
         
         except Exception as e:
@@ -111,6 +111,8 @@ class Reader(BaseReader, StructuredReader):
             logger.warning('Vtransform not found, using 1')
             self.Vtransform = 1
         self.Vtransform = np.asarray(self.Vtransform)
+        logger.info(f'Vtransform = {self.Vtransform}')
+
 
         if 's_rho' not in self.Dataset.variables:
             dimensions = 2
