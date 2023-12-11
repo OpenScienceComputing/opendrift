@@ -93,8 +93,10 @@ class Reader(BaseReader, StructuredReader):
             # Open dataset from Intake catalog, check that everything is ok
             logger.info('Opening dataset: ' + dataset)
             # intake_catalog = 'https://mghp.osn.xsede.org/rsignellbucket1/rsignell/cnaps.yml'
-            
-            cat = intake.open_catalog(intake_catalog)
+            if type(intake_catalog) == intake.catalog.local.YAMLFileCatalog:
+                cat = intake_catalog
+            else:
+                cat = intake.open_catalog(intake_catalog)
             # dataset = 'CNAPS_opendrift' 
             self.Dataset = cat[dataset].to_dask()
         

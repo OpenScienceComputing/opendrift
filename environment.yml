@@ -36,5 +36,6 @@ dependencies:
   - fsspec
   - motuclient
   - pip
+  - fastparquet
   - pip:
     - pytest-sphinx
