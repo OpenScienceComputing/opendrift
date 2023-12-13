@@ -98,7 +98,8 @@ class Reader(BaseReader, StructuredReader):
             else:
                 cat = intake.open_catalog(intake_catalog)
             # dataset = 'CNAPS_opendrift' 
-            self.Dataset = cat[dataset].to_dask()
+            #self.Dataset = cat[dataset].to_dask()
+            self.Dataset = cat[dataset].read_chunked()
         
         except Exception as e:
             raise ValueError(e)
