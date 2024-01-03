@@ -97,9 +97,12 @@ class Reader(BaseReader, StructuredReader):
                 cat = intake_catalog
             else:
                 cat = intake.open_catalog(intake_catalog)
+            # opendrift wants decode_times false, so add it here
+            dset = cat[dataset]
+            dset.kwargs.update({'decode_times':False})
             # dataset = 'CNAPS_opendrift' 
-            #self.Dataset = cat[dataset].to_dask()
-            self.Dataset = cat[dataset].read_chunked()
+            self.Dataset = dset.to_dask()
+            #self.Dataset = dset.read_chunked()
         
         except Exception as e:
             raise ValueError(e)
