@@ -31,8 +31,11 @@ try:
     from opendrift.readers import reader_netCDF_CF_generic
     from opendrift.readers import reader_netCDF_CF_unstructured
     from opendrift.readers import reader_ROMS_native
+    from opendrift.readers import reader_ROMS_intake
 
-    readers = [reader_netCDF_CF_generic, reader_ROMS_native, reader_netCDF_CF_unstructured]
+    readers = [reader_netCDF_CF_generic, reader_netCDF_CF_unstructured,
+               reader_ROMS_native, reader_ROMS_intake]
+               
     try:
         from opendrift.readers import reader_grib
         readers.append(reader_grib)
